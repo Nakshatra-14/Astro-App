@@ -31,4 +31,17 @@ public class Chart {
 
         }
 
+    public static void kpChart(Graphics g, int height, int width)
+    {
+        int ymid = (height / 2);
+        int xmid = (width / 2);
+        
+        g.drawLine(0, 0, width, height);
+        g.drawLine(width, 0, 0, height);
+        
+        g.drawLine(0, ymid, xmid, 0);
+        g.drawLine(xmid, 0, width, ymid);
+        g.drawLine(width, ymid, xmid, height);
+        g.drawLine(xmid, height, 0, ymid);
+    }
 }

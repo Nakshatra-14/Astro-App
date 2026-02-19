@@ -14,6 +14,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.*;
+import java.awt.event.*;
 
 /**
  *
@@ -25,11 +27,17 @@ public class AstroApp extends JFrame{
     {
         this.setTitle("AstroApp");
 
-            JTabbedPane jTabbedPane = new JTabbedPane();
+        JTabbedPane jTabbedPane = new JTabbedPane();
 
-        jTabbedPane.addTab("Chart Position", new ChartPosition());
+        jTabbedPane.addTab("Chart House Position", new ChartPosition());
         jTabbedPane.addTab("Planet Chart Details", new GetPlanetChartDetails());
         jTabbedPane.addTab("Planetary Friendship", new PlanetaryFriendship());
+        jTabbedPane.addTab("Nakshatra and Lords", new NakshatraAndTheirLords());
+        jTabbedPane.addTab("KP House Chart", new KPChart());
+        
+        jTabbedPane.addChangeListener( _ -> {
+            this.revalidate();
+        });
 
         this.add(jTabbedPane);
     }
@@ -49,7 +57,7 @@ public class AstroApp extends JFrame{
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.pack();
         app.setLocationRelativeTo(null);
-        app.setResizable(false);
+//        app.setResizable(false);
         app.setVisible(true);
     }
 }

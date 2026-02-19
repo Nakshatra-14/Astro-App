@@ -6,6 +6,7 @@ package com.mycompany.astroapp;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,10 +20,34 @@ public class Planets {
     private String color;
     private String nature;
     private String element;
+    private String gender;
+    private String deity;
+    private ArrayList<String> friend;
+    private ArrayList<String> enemies;
+    private ArrayList<String> neutral;
+    private String ownSign;
+    private String animalAndBird;
+    private String disease;
+    private String varna;
+    private String gemstone;
     private String info;
 
     String natureContainer[] = {"movable", "fixed", "duel", "movable", "fixed", "duel", "movable", "fixed", "duel", "movable", "fixed", "duel"};
     String elementContainer[] = {"fire", "earth", "air", "water", "fire", "earth", "air", "water", "fire", "earth", "air", "water"};
+    String[] planetaryGenders = {
+    "Masculine", // Mars (Aries)
+    "Feminine",  // Venus (Taurus)
+    "Neuter",    // Mercury (Gemini)
+    "Feminine",  // Moon (Cancer)
+    "Masculine", // Sun (Leo)
+    "Neuter",    // Mercury (Virgo)
+    "Feminine",  // Venus (Libra)
+    "Masculine", // Mars (Scorpio)
+    "Masculine", // Jupiter (Sagittarius)
+    "Neuter",    // Saturn (Capricorn)
+    "Neuter",    // Saturn (Aquarius)
+    "Masculine"  // Jupiter (Pisces)
+    };
 
     public Planets(String name, int number) {
         this.name = name;
@@ -41,8 +66,9 @@ public class Planets {
             default -> "invalid";
         };
         this.color = clr;
-        this.nature = natureContainer[number-1];
-        this.element = elementContainer[number-1];
+        this.nature = natureContainer[number - 1];
+        this.element = elementContainer[number - 1];
+        this.gender = planetaryGenders[number - 1];
 
         String str = switch(name)
         {
@@ -58,6 +84,157 @@ public class Planets {
             default -> "Invalid";
         };
         this.info = str;
+        
+        //friends
+        addFriendInArrayList(name, friend);
+
+        //enemies
+        addEnemiesInArrayList(name, enemies);
+
+        //neutral
+        addNeutralInArrayList(name, neutral);
+    }
+
+    // public String getDeity(String name)
+    // {
+    //     return switch (name) {
+    //         case "Sun" -> "Shiva";
+    //         case "Moon" -> "White";
+    //         case "Mars" -> "Red";
+    //         case "Mercury" -> "Green";
+    //         case "Jupiter" -> "Yellow";
+    //         case "Venus" -> "Firoji";
+    //         case "Saturn" -> "Black";
+    //         case "Rahu" -> "Grey";
+    //         case "Ketu" -> "Pale Brown";
+    //         default -> "invalid";
+    //     };
+    // }
+
+    // public String getOwnSign(String name)
+    // {
+    //     return switch (name) {
+    //         case "Sun" -> "Orange";
+    //         case "Moon" -> "White";
+    //         case "Mars" -> "Red";
+    //         case "Mercury" -> "Green";
+    //         case "Jupiter" -> "Yellow";
+    //         case "Venus" -> "Firoji";
+    //         case "Saturn" -> "Black";
+    //         case "Rahu" -> "Grey";
+    //         case "Ketu" -> "Pale Brown";
+    //         default -> "invalid";
+    //     };
+    // }
+
+    // public String getAnimalAndBirds(String name)
+    // {
+    //     return switch (name) {
+    //         case "Sun" -> "Orange";
+    //         case "Moon" -> "White";
+    //         case "Mars" -> "Red";
+    //         case "Mercury" -> "Green";
+    //         case "Jupiter" -> "Yellow";
+    //         case "Venus" -> "Firoji";
+    //         case "Saturn" -> "Black";
+    //         case "Rahu" -> "Grey";
+    //         case "Ketu" -> "Pale Brown";
+    //         default -> "invalid";
+    //     };
+    // }
+
+    // public String getDisease(String name)
+    // {
+    //     return switch (name) {
+    //         case "Sun" -> "Orange";
+    //         case "Moon" -> "White";
+    //         case "Mars" -> "Red";
+    //         case "Mercury" -> "Green";
+    //         case "Jupiter" -> "Yellow";
+    //         case "Venus" -> "Firoji";
+    //         case "Saturn" -> "Black";
+    //         case "Rahu" -> "Grey";
+    //         case "Ketu" -> "Pale Brown";
+    //         default -> "invalid";
+    //     };
+    // }
+
+    // public String getVarna(String name)
+    // {
+    //     return switch (name) {
+    //         case "Sun" -> "Orange";
+    //         case "Moon" -> "White";
+    //         case "Mars" -> "Red";
+    //         case "Mercury" -> "Green";
+    //         case "Jupiter" -> "Yellow";
+    //         case "Venus" -> "Firoji";
+    //         case "Saturn" -> "Black";
+    //         case "Rahu" -> "Grey";
+    //         case "Ketu" -> "Pale Brown";
+    //         default -> "invalid";
+    //     };
+    // }
+
+    // public String getGemstone(String name)
+    // {
+    //     return switch (name) {
+    //         case "Sun" -> "Orange";
+    //         case "Moon" -> "White";
+    //         case "Mars" -> "Red";
+    //         case "Mercury" -> "Green";
+    //         case "Jupiter" -> "Yellow";
+    //         case "Venus" -> "Firoji";
+    //         case "Saturn" -> "Black";
+    //         case "Rahu" -> "Grey";
+    //         case "Ketu" -> "Pale Brown";
+    //         default -> "invalid";
+    //     };
+    // }
+
+
+    public void addFriendInArrayList(String name, ArrayList<String> al)
+    {
+            switch (name) {
+            case "Sun" -> al.addAll(Arrays.asList("Moon", "Mars", "Jupiter"));
+            case "Moon" -> al.addAll(Arrays.asList("Sun", "Mercury"));
+            case "Mars" -> al.addAll(Arrays.asList("Sun", "Moon", "Jupiter"));
+            case "Mercury" -> al.addAll(Arrays.asList("Sun", "Venus"));
+            case "Jupiter" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
+            case "Venus" -> al.addAll(Arrays.asList("Mercury", "Saturn"));
+            case "Saturn" -> al.addAll(Arrays.asList("Mercury", "Venus"));
+            case "Rahu" -> al.addAll(Arrays.asList("Venus", "Saturn"));
+            case "Ketu" -> al.addAll(Arrays.asList("Mars", "Venus"));
+            }
+    }
+
+    public void addEnemiesInArrayList(String name, ArrayList<String> al)
+    {
+            switch (name) {
+            case "Sun" -> al.addAll(Arrays.asList("Venus", "Saturn"));
+            case "Moon" -> al.addAll(Arrays.asList("None"));
+            case "Mars" -> al.addAll(Arrays.asList("Mercury"));
+            case "Mercury" -> al.addAll(Arrays.asList("Moon"));
+            case "Jupiter" -> al.addAll(Arrays.asList("Mercury", "Venus"));
+            case "Venus" -> al.addAll(Arrays.asList("Sun", "Moon"));
+            case "Saturn" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
+            case "Rahu" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
+            case "Ketu" -> al.addAll(Arrays.asList("Sun", "Moon"));
+            }
+    }
+
+    public void addNeutralInArrayList(String name, ArrayList<String> al)
+    {
+            switch (name) {
+            case "Sun" -> al.addAll(Arrays.asList("Mercury"));
+            case "Moon" -> al.addAll(Arrays.asList("Mars", "Jupiter", "Venus", "Saturn"));
+            case "Mars" -> al.addAll(Arrays.asList("Venus", "Saturn"));
+            case "Mercury" -> al.addAll(Arrays.asList("Mars", "Jupiter", "Saturn"));
+            case "Jupiter" -> al.addAll(Arrays.asList("Saturn"));
+            case "Venus" -> al.addAll(Arrays.asList("Mars", "Jupiter"));
+            case "Saturn" -> al.addAll(Arrays.asList("Jupiter"));
+            case "Rahu" -> al.addAll(Arrays.asList("Mercury", "Jupiter"));
+            case "Ketu" -> al.addAll(Arrays.asList("Mercury", "Jupiter", "Saturn"));
+            }
     }
 
     public static String getPlanetName(int n) {
@@ -213,6 +390,46 @@ public class Planets {
 
     public String getInfo() {
         return info;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public ArrayList<String> getFriend() {
+        return friend;
+    }
+
+    public ArrayList<String> getEnemies() {
+        return enemies;
+    }
+
+    public ArrayList<String> getNeutral() {
+        return neutral;
+    }
+
+    public String getDeity() {
+        return deity;
+    }
+
+    public String getOwnSign() {
+        return ownSign;
+    }
+
+    public String getAnimalAndBird() {
+        return animalAndBird;
+    }
+
+    public String getDisease() {
+        return disease;
+    }
+
+    public String getVarna() {
+        return varna;
+    }
+
+    public String getGemstone() {
+        return gemstone;
     }
 }
 

@@ -10,8 +10,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -21,12 +25,18 @@ import javax.swing.JPanel;
 public class ChartPosition extends javax.swing.JPanel {
    
     private ArrayList<Planets> al = new ArrayList<>();
-
+    Image img;
     /**
      * Creates new form ChartPosition
      */
     public ChartPosition() {
         initComponents();
+        try {
+//            img = ImageIO.read(new File("C:\\Users\\naksh\\Downloads\\bg.jpg"));
+                img = ImageIO.read(new File("resources\\bg.jpg"));
+        } catch (IOException ex) {
+            System.getLogger(GetPlanetChartDetails.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
         Planets.addPlanetsChartDetails(al);
 
         JPanel p = new MyPanel();
@@ -44,6 +54,17 @@ public class ChartPosition extends javax.swing.JPanel {
         {
             super.paintComponent(g);
             
+            
+            g.drawImage(img, 0, 0, this);
+
+            Color bgColor = new Color(0, 0, 0, 150); 
+        
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2d.setColor(bgColor);
+            g2d.fillRect(0, 0, getWidth(), getHeight());
+            
             Graphics2D g2 = (Graphics2D) g;
             int height = getHeight();
             int width = getWidth();
@@ -52,6 +73,8 @@ public class ChartPosition extends javax.swing.JPanel {
             g2.setStroke(new BasicStroke(3));
             Chart.makeChart(g2, height, width);
             addPlanetInChart(g2, height, width);
+            
+            
         }
 
         public void addPlanetInChart(Graphics2D g, int height, int width)
