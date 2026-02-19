@@ -38,6 +38,8 @@ public class GetPlanetChartDetails extends javax.swing.JPanel {
         } catch (IOException ex) {
             System.getLogger(GetPlanetChartDetails.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        txtAreaInfo.setLineWrap(true);
+        txtAreaInfo.setWrapStyleWord(true);
         Planets.add9PlanetsChartDetails(al);
         jlistPlanets.addListSelectionListener( _ -> {
             if(!jlistPlanets.getValueIsAdjusting())

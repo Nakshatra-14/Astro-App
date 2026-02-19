@@ -26,34 +26,35 @@ public class Planets {
     private ArrayList<String> enemies;
     private ArrayList<String> neutral;
     private String ownSign;
-    private String animalAndBird;
     private String disease;
     private String varna;
     private String gemstone;
     private String info;
+    private String mantra;
 
-    String natureContainer[] = {"movable", "fixed", "duel", "movable", "fixed", "duel", "movable", "fixed", "duel", "movable", "fixed", "duel"};
-    String elementContainer[] = {"fire", "earth", "air", "water", "fire", "earth", "air", "water", "fire", "earth", "air", "water"};
+    String natureContainer[] = { "movable", "fixed", "duel", "movable", "fixed", "duel", "movable", "fixed", "duel",
+            "movable", "fixed", "duel" };
+    String elementContainer[] = { "fire", "earth", "air", "water", "fire", "earth", "air", "water", "fire", "earth",
+            "air", "water" };
     String[] planetaryGenders = {
-    "Masculine", // Mars (Aries)
-    "Feminine",  // Venus (Taurus)
-    "Neuter",    // Mercury (Gemini)
-    "Feminine",  // Moon (Cancer)
-    "Masculine", // Sun (Leo)
-    "Neuter",    // Mercury (Virgo)
-    "Feminine",  // Venus (Libra)
-    "Masculine", // Mars (Scorpio)
-    "Masculine", // Jupiter (Sagittarius)
-    "Neuter",    // Saturn (Capricorn)
-    "Neuter",    // Saturn (Aquarius)
-    "Masculine"  // Jupiter (Pisces)
+            "Masculine", // Mars (Aries)
+            "Feminine", // Venus (Taurus)
+            "Neuter", // Mercury (Gemini)
+            "Feminine", // Moon (Cancer)
+            "Masculine", // Sun (Leo)
+            "Neuter", // Mercury (Virgo)
+            "Feminine", // Venus (Libra)
+            "Masculine", // Mars (Scorpio)
+            "Masculine", // Jupiter (Sagittarius)
+            "Neuter", // Saturn (Capricorn)
+            "Neuter", // Saturn (Aquarius)
+            "Masculine" // Jupiter (Pisces)
     };
 
     public Planets(String name, int number) {
         this.name = name;
         this.number = number;
-        String clr = switch(this.name)
-        {
+        String clr = switch (this.name) {
             case "Sun" -> "Orange";
             case "Moon" -> "White";
             case "Mars" -> "Red";
@@ -70,131 +71,139 @@ public class Planets {
         this.element = elementContainer[number - 1];
         this.gender = planetaryGenders[number - 1];
 
-        String str = switch(name)
-        {
-            case "Sun" -> "orange, father king, slow, \nhonesty, politician,royality, \nfire, doctor, heart, head, acidity, \nright eye";
-            case "Moon" -> "white, mother, food, water, \nkindness, nurse, mind and mental, \nbroncrities, pneumonia, insomia, husband";
-            case "Mars" -> "general, tough, adament, red,\nmachinary, enginering, fever, \ndiarrhea, brother, land, property";
-            case "Mercury" -> "green greenery, talkative, \ndiluted, book, writing, reading, \nschool, baby nature, baby items, \nsister, hand, ear, arm";
-            case "Jupiter" -> "yellow, teacher, god, temple, higher \nstudy, growth (cancer), jandice";
-            case "Venus" -> "firoji, soild, filter, purify, \nskin disease, kidney, wife";
-            case "Saturn" -> "black, aged person, laubour, \nbegger, servent, delay, bone, hair, \nfarmer property, job, teeth, leg";
-            case "Rahu" -> "online, gadgets, big thinking, \nfocus anything, dart board, \nwind chimes, camera, hot drinks, \nupper portion of body, dirty";
-            case "Ketu" -> "pale brown, small place, narrow, \nsecret, detach, lower portion of body, \nnature, meditation, yoga, cyst, \nback pain, low pressure";
-            default -> "Invalid";
-        };
-        this.info = str;
-        
-        //friends
+        // info
+        this.info = getInfo(name);
+
+        // friends
+        friend = new ArrayList<>();
         addFriendInArrayList(name, friend);
 
-        //enemies
+        // //enemies
+        enemies = new ArrayList<>();
         addEnemiesInArrayList(name, enemies);
 
-        //neutral
+        // //neutral
+        neutral = new ArrayList<>();
         addNeutralInArrayList(name, neutral);
     }
 
-    // public String getDeity(String name)
-    // {
-    //     return switch (name) {
-    //         case "Sun" -> "Shiva";
-    //         case "Moon" -> "White";
-    //         case "Mars" -> "Red";
-    //         case "Mercury" -> "Green";
-    //         case "Jupiter" -> "Yellow";
-    //         case "Venus" -> "Firoji";
-    //         case "Saturn" -> "Black";
-    //         case "Rahu" -> "Grey";
-    //         case "Ketu" -> "Pale Brown";
-    //         default -> "invalid";
-    //     };
-    // }
+    public String getDeity(String name) {
+        return switch (name) {
+            case "Sun" -> "Shiva";
+            case "Moon" -> "Shiva";
+            case "Mars" -> "Hanuman / Kartikeya";
+            case "Mercury" -> "Vishnu or Narayan";
+            case "Jupiter" -> "Brahma & Shiva";
+            case "Venus" -> " Lakshmi";
+            case "Saturn" -> "Bharina, Brahma, & Shiva";
+            case "Rahu" -> "Adhishakti, Mag devata";
+            case "Ketu" -> "Ganesh";
+            default -> "invalid";
+        };
+    }
 
-    // public String getOwnSign(String name)
-    // {
-    //     return switch (name) {
-    //         case "Sun" -> "Orange";
-    //         case "Moon" -> "White";
-    //         case "Mars" -> "Red";
-    //         case "Mercury" -> "Green";
-    //         case "Jupiter" -> "Yellow";
-    //         case "Venus" -> "Firoji";
-    //         case "Saturn" -> "Black";
-    //         case "Rahu" -> "Grey";
-    //         case "Ketu" -> "Pale Brown";
-    //         default -> "invalid";
-    //     };
-    // }
+    public String getOwnSign(String name) {
+        return switch (name) {
+            case "Sun" -> "Leo";
+            case "Moon" -> "Cancer";
+            case "Mars" -> "Aries & Scorpio";
+            case "Mercury" -> "Gemini, Virgo";
+            case "Jupiter" -> "Sagittarius, Pisces";
+            case "Venus" -> "Taurus, Libra";
+            case "Saturn" -> "Capricorn & Aquarius";
+            case "Rahu" -> "Aquarius";
+            case "Ketu" -> "Scorpio";
+            default -> "invalid";
+        };
+    }
 
-    // public String getAnimalAndBirds(String name)
-    // {
-    //     return switch (name) {
-    //         case "Sun" -> "Orange";
-    //         case "Moon" -> "White";
-    //         case "Mars" -> "Red";
-    //         case "Mercury" -> "Green";
-    //         case "Jupiter" -> "Yellow";
-    //         case "Venus" -> "Firoji";
-    //         case "Saturn" -> "Black";
-    //         case "Rahu" -> "Grey";
-    //         case "Ketu" -> "Pale Brown";
-    //         default -> "invalid";
-    //     };
-    // }
+    public String getDisease(String name) {
+        return switch (name) {
+            case "Sun" -> "Heart & Bone related problem, High fever, acidity";
+            case "Moon" -> "Digestion problem, Anxiety, depression, and cold, cough, weak eye sight";
+            case "Mars" -> "Blood infection, stomatch related problem disease, piles and blood pressure";
+            case "Mercury" ->
+                "Tooth decay, all problem related to nervous disorder, mental imbalance, defected speech, insomnia";
+            case "Jupiter" -> "All deseases connected with liver, sinus, cancer, jaundice and enlargement of organs";
+            case "Venus" -> "Skin related, allergies, sexual diseases";
+            case "Saturn" -> "Cough, vision problem, gathiya, pain and chronic illness";
+            case "Rahu" -> "Accident, leprosy, sudden injury, disease of foot and skin, mental disease";
+            case "Ketu" -> "Disease from unknown cause, urinary disease, mental instability";
+            default -> "invalid";
+        };
+    }
 
-    // public String getDisease(String name)
-    // {
-    //     return switch (name) {
-    //         case "Sun" -> "Orange";
-    //         case "Moon" -> "White";
-    //         case "Mars" -> "Red";
-    //         case "Mercury" -> "Green";
-    //         case "Jupiter" -> "Yellow";
-    //         case "Venus" -> "Firoji";
-    //         case "Saturn" -> "Black";
-    //         case "Rahu" -> "Grey";
-    //         case "Ketu" -> "Pale Brown";
-    //         default -> "invalid";
-    //     };
-    // }
+    public String getVarna(String name) {
+        return switch (name) {
+            case "Sun" -> "Kshatriya";
+            case "Moon" -> "Vaishya";
+            case "Mars" -> "Kshatriya";
+            case "Mercury" -> "Vaishya";
+            case "Jupiter" -> "Brahman";
+            case "Venus" -> "Brahman";
+            case "Saturn" -> "Shudra";
+            case "Rahu" -> "Shudra";
+            case "Ketu" -> "Shudra";
+            default -> "invalid";
+        };
+    }
 
-    // public String getVarna(String name)
-    // {
-    //     return switch (name) {
-    //         case "Sun" -> "Orange";
-    //         case "Moon" -> "White";
-    //         case "Mars" -> "Red";
-    //         case "Mercury" -> "Green";
-    //         case "Jupiter" -> "Yellow";
-    //         case "Venus" -> "Firoji";
-    //         case "Saturn" -> "Black";
-    //         case "Rahu" -> "Grey";
-    //         case "Ketu" -> "Pale Brown";
-    //         default -> "invalid";
-    //     };
-    // }
+    public String getGemstone(String name) {
+        return switch (name) {
+            case "Sun" -> "Ruby, Garnet";
+            case "Moon" -> "Pearl, Moon stone";
+            case "Mars" -> "Red Coral";
+            case "Mercury" -> "Emerald, onyx";
+            case "Jupiter" -> "Yellow Sapphire & topaz";
+            case "Venus" -> "Diamond or AD & opal";
+            case "Saturn" -> "Blue Sapphire & Neeli";
+            case "Rahu" -> "Gomed";
+            case "Ketu" -> "Cats eye";
+            default -> "invalid";
+        };
+    }
 
-    // public String getGemstone(String name)
-    // {
-    //     return switch (name) {
-    //         case "Sun" -> "Orange";
-    //         case "Moon" -> "White";
-    //         case "Mars" -> "Red";
-    //         case "Mercury" -> "Green";
-    //         case "Jupiter" -> "Yellow";
-    //         case "Venus" -> "Firoji";
-    //         case "Saturn" -> "Black";
-    //         case "Rahu" -> "Grey";
-    //         case "Ketu" -> "Pale Brown";
-    //         default -> "invalid";
-    //     };
-    // }
+    public String getMantra(String name) {
+        return switch (name) {
+            case "Sun" -> "Om Hreem Hraum se Suryaye Namah";
+            case "Moon" -> "Om Shraam Shreem Shraum se chandraye Namah";
+            case "Mars" -> "Om Kraam Kreem Kraum se Bhaumaye Namah";
+            case "Mercury" -> "Om Braam Breem Braum se Budhaye Namah";
+            case "Jupiter" -> "Om Graam greem graum Se Guruve Namah";
+            case "Venus" -> "Om Dhraam Dhreem Dhraum Se Shukraye Namah";
+            case "Saturn" -> "Om Praam Preem Praum Se Shaniye Namah";
+            case "Rahu" -> "Om Bhraam Bhreem Bhraum se Rahuve Namah";
+            case "Ketu" -> "OM ke ketve Namah";
+            default -> "invalid";
+        };
+    }
 
+    public String getInfo(String name) {
+        return switch (name) {
+            case "Sun" ->
+                "orange, father king, slow, high management honesty, politician, royality, goverment,leadership, confidence, fire, doctor, heart, head, acidity, bone, right eye";
+            case "Moon" ->
+                "white, mother, subconcious, mother love, emotions, fast driving, water or liquid, inner peace, food, water, kindness, nurse, mind and mental, broncrities, pneumonia, insomia, husband";
+            case "Mars" ->
+                "action and aggression, courage, general, motivation, younger brother, fights, physical strength, tough, adament, red, machinary, enginering, fever, diarrhea, brother, land, property";
+            case "Mercury" ->
+                "green greenery, talkative, inteligence, Concious mind, sometime childish, calculation, speech, diluted, book, writing, reading, skill, school, sense of humor, sensing smell, baby nature, baby items, \nsister, hand, ear, arm";
+            case "Jupiter" ->
+                "yellow, teacher, god, temple, fair complextion, phlegmatic and stout body,  higher study, growth (cancer), jandice";
+            case "Venus" ->
+                "firoji, soild, filter, purify, Good looking body, pleasing eyes, curly hairs, youthful look, skin disease, kidney, wife, everything that make feels pleasure";
+            case "Saturn" ->
+                "black, aged person, laubour, begger, servent, delay, bone, hair, farmer property, job, teeth, leg, slum area";
+            case "Rahu" ->
+                "online, gadgets, big thinking, focus anything, attention, fear, gas, research, poison, snake head, dart board, wind chimes, camera, hot drinks, upper portion of body, dirty";
+            case "Ketu" ->
+                "pale brown, fierce looking, dharmik and black complextion, yoga, isolation, meditation, small place, narrow, secret, detach, lower portion of body, nature, cyst, back pain, low pressure";
+            default -> "Invalid";
+        };
+    }
 
-    public void addFriendInArrayList(String name, ArrayList<String> al)
-    {
-            switch (name) {
+    public void addFriendInArrayList(String name, ArrayList<String> al) {
+        switch (name) {
             case "Sun" -> al.addAll(Arrays.asList("Moon", "Mars", "Jupiter"));
             case "Moon" -> al.addAll(Arrays.asList("Sun", "Mercury"));
             case "Mars" -> al.addAll(Arrays.asList("Sun", "Moon", "Jupiter"));
@@ -204,12 +213,11 @@ public class Planets {
             case "Saturn" -> al.addAll(Arrays.asList("Mercury", "Venus"));
             case "Rahu" -> al.addAll(Arrays.asList("Venus", "Saturn"));
             case "Ketu" -> al.addAll(Arrays.asList("Mars", "Venus"));
-            }
+        }
     }
 
-    public void addEnemiesInArrayList(String name, ArrayList<String> al)
-    {
-            switch (name) {
+    public void addEnemiesInArrayList(String name, ArrayList<String> al) {
+        switch (name) {
             case "Sun" -> al.addAll(Arrays.asList("Venus", "Saturn"));
             case "Moon" -> al.addAll(Arrays.asList("None"));
             case "Mars" -> al.addAll(Arrays.asList("Mercury"));
@@ -219,12 +227,11 @@ public class Planets {
             case "Saturn" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
             case "Rahu" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
             case "Ketu" -> al.addAll(Arrays.asList("Sun", "Moon"));
-            }
+        }
     }
 
-    public void addNeutralInArrayList(String name, ArrayList<String> al)
-    {
-            switch (name) {
+    public void addNeutralInArrayList(String name, ArrayList<String> al) {
+        switch (name) {
             case "Sun" -> al.addAll(Arrays.asList("Mercury"));
             case "Moon" -> al.addAll(Arrays.asList("Mars", "Jupiter", "Venus", "Saturn"));
             case "Mars" -> al.addAll(Arrays.asList("Venus", "Saturn"));
@@ -234,7 +241,7 @@ public class Planets {
             case "Saturn" -> al.addAll(Arrays.asList("Jupiter"));
             case "Rahu" -> al.addAll(Arrays.asList("Mercury", "Jupiter"));
             case "Ketu" -> al.addAll(Arrays.asList("Mercury", "Jupiter", "Saturn"));
-            }
+        }
     }
 
     public static String getPlanetName(int n) {
@@ -285,10 +292,9 @@ public class Planets {
     public static String[] getPlanetNameArray() {
         ArrayList<String> l = new ArrayList<>();
         for (int i = 0; i < 9; i++)
-            l.add(getPlanetName(i+1));
+            l.add(getPlanetName(i + 1));
         return l.toArray(new String[l.size()]);
     }
-
 
     public static String getBodypartChartName(int n) {
         return switch (n) {
@@ -325,9 +331,8 @@ public class Planets {
             default -> "invalid";
         };
     }
-    
-    public static void add9PlanetsChartDetails(List<Planets> lst)
-    {
+
+    public static void add9PlanetsChartDetails(List<Planets> lst) {
         lst.add(new Planets(Planets.getPlanetName(1), 1));
         lst.add(new Planets(Planets.getPlanetName(2), 2));
         lst.add(new Planets(Planets.getPlanetName(3), 3));
@@ -340,32 +345,31 @@ public class Planets {
     }
 
     public static void addPlanetsChartDetails(List<Planets> lst) {
-                lst.add(new Planets(Planets.getPlanetName(3), 1));
-                lst.add(new Planets(Planets.getPlanetName(6), 2));
-                lst.add(new Planets(Planets.getPlanetName(4), 3));
-                lst.add(new Planets(Planets.getPlanetName(2), 4));
-                lst.add(new Planets(Planets.getPlanetName(1), 5));
-                lst.add(new Planets(Planets.getPlanetName(4), 6));
-                lst.add(new Planets(Planets.getPlanetName(6), 7));
-                lst.add(new Planets(Planets.getPlanetName(3), 8));
-                lst.add(new Planets(Planets.getPlanetName(5), 9));
-                lst.add(new Planets(Planets.getPlanetName(7), 10));
-                lst.add(new Planets(Planets.getPlanetName(7), 11));
-                lst.add(new Planets(Planets.getPlanetName(5), 12));
-        }
+        lst.add(new Planets(Planets.getPlanetName(3), 1));
+        lst.add(new Planets(Planets.getPlanetName(6), 2));
+        lst.add(new Planets(Planets.getPlanetName(4), 3));
+        lst.add(new Planets(Planets.getPlanetName(2), 4));
+        lst.add(new Planets(Planets.getPlanetName(1), 5));
+        lst.add(new Planets(Planets.getPlanetName(4), 6));
+        lst.add(new Planets(Planets.getPlanetName(6), 7));
+        lst.add(new Planets(Planets.getPlanetName(3), 8));
+        lst.add(new Planets(Planets.getPlanetName(5), 9));
+        lst.add(new Planets(Planets.getPlanetName(7), 10));
+        lst.add(new Planets(Planets.getPlanetName(7), 11));
+        lst.add(new Planets(Planets.getPlanetName(5), 12));
+    }
 
-        public static String[] getPlanetNameChartStringArray(List<Planets> lst) {
-                ArrayList<String> l = new ArrayList<>();
-                for (int i = 0; i < 12; i++)
-                        l.add(lst.get(i).getName());
-                return l.toArray(new String[lst.size()]);
-        }
+    public static String[] getPlanetNameChartStringArray(List<Planets> lst) {
+        ArrayList<String> l = new ArrayList<>();
+        for (int i = 0; i < 12; i++)
+            l.add(lst.get(i).getName());
+        return l.toArray(new String[lst.size()]);
+    }
 
-    
     @Override
     public String toString() {
         return "Planets [number=" + number + ", name=" + name + ", color=" + color + ", nature=" + nature + ", element="
-                + element + ", info = " + info +"]\n";
+                + element + ", info = " + info + "]\n";
     }
 
     public int getNumber() {
@@ -416,10 +420,6 @@ public class Planets {
         return ownSign;
     }
 
-    public String getAnimalAndBird() {
-        return animalAndBird;
-    }
-
     public String getDisease() {
         return disease;
     }
@@ -432,4 +432,3 @@ public class Planets {
         return gemstone;
     }
 }
-
