@@ -5,9 +5,15 @@
 package com.mycompany.astroapp;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 
 /**
  *
@@ -31,6 +37,7 @@ public class Planets {
     private String gemstone;
     private String info;
     private String mantra;
+    private Image img;
 
     String natureContainer[] = { "movable", "fixed", "duel", "movable", "fixed", "duel", "movable", "fixed", "duel",
             "movable", "fixed", "duel" };
@@ -85,6 +92,44 @@ public class Planets {
         // //neutral
         neutral = new ArrayList<>();
         addNeutralInArrayList(name, neutral);
+
+        deity = getDeity(this.name);
+
+        ownSign = getOwnSign(this.name);
+
+        disease = getDisease(this.name);
+
+        varna = getVarna(this.name);
+
+        gemstone = getGemstone(this.name);
+
+        mantra = getMantra(this.name);
+        
+        img = getImage(this.name);
+
+    }
+
+    public Image getImage(String name) {
+        Image img = null;
+        String str = switch (this.name) {
+            case "Sun" -> "resources\\sun.png";
+            case "Moon" -> "resources\\moon.png";
+            case "Mars" -> "resources\\mars.png";
+            case "Mercury" -> "resources\\mercury.png";
+            case "Jupiter" -> "resources\\jupiter.png";
+            case "Venus" -> "resources\\venus.png";
+            case "Saturn" -> "resources\\saturn.png";
+            case "Rahu" -> "resources\\bg.jpg";
+            case "Ketu" -> "resources\\bg.jpg";
+            default -> null;
+        };
+        try {
+            img = ImageIO.read(new File(str));
+        } catch (Exception ex) {
+            System.getLogger(Planets.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            ex.printStackTrace();
+        }
+        return img;
     }
 
     public String getDeity(String name) {
@@ -366,12 +411,6 @@ public class Planets {
         return l.toArray(new String[lst.size()]);
     }
 
-    @Override
-    public String toString() {
-        return "Planets [number=" + number + ", name=" + name + ", color=" + color + ", nature=" + nature + ", element="
-                + element + ", info = " + info + "]\n";
-    }
-
     public int getNumber() {
         return number;
     }
@@ -400,16 +439,25 @@ public class Planets {
         return gender;
     }
 
-    public ArrayList<String> getFriend() {
-        return friend;
+    public String getFriend() {
+        StringJoiner sj = new StringJoiner(", ");
+        for (String s : friend)
+            sj.add(s);
+        return sj.toString();
     }
 
-    public ArrayList<String> getEnemies() {
-        return enemies;
+    public String getEnemies() {
+        StringJoiner sj = new StringJoiner(", ");
+        for (String s : enemies)
+            sj.add(s);
+        return sj.toString();
     }
 
-    public ArrayList<String> getNeutral() {
-        return neutral;
+    public String getNeutral() {
+        StringJoiner sj = new StringJoiner(", ");
+        for (String s : neutral)
+            sj.add(s);
+        return sj.toString();
     }
 
     public String getDeity() {
@@ -430,5 +478,38 @@ public class Planets {
 
     public String getGemstone() {
         return gemstone;
+    }
+
+    public String getMantra() {
+        return mantra;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Planets{");
+        sb.append("number=").append(number);
+        sb.append(", name=").append(name);
+        sb.append(", color=").append(color);
+        sb.append(", nature=").append(nature);
+        sb.append(", element=").append(element);
+        sb.append(", gender=").append(gender);
+        sb.append(", deity=").append(deity);
+        sb.append(", friend=").append(friend);
+        sb.append(", enemies=").append(enemies);
+        sb.append(", neutral=").append(neutral);
+        sb.append(", ownSign=").append(ownSign);
+        sb.append(", disease=").append(disease);
+        sb.append(", varna=").append(varna);
+        sb.append(", gemstone=").append(gemstone);
+        sb.append(", info=").append(info);
+        sb.append(", mantra=").append(mantra);
+        sb.append(", img=").append(img);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    public Image getImg() {
+        return img;
     }
 }

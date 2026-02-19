@@ -29,11 +29,11 @@ public class AstroApp extends JFrame{
 
         JTabbedPane jTabbedPane = new JTabbedPane();
 
-        jTabbedPane.addTab("Chart House Position", new ChartPosition());
+//        jTabbedPane.addTab("Chart House Position", new ChartPosition());
         jTabbedPane.addTab("Planet Chart Details", new GetPlanetChartDetails());
-        jTabbedPane.addTab("Planetary Friendship", new PlanetaryFriendship());
-        jTabbedPane.addTab("Nakshatra and Lords", new NakshatraAndTheirLords());
-        jTabbedPane.addTab("KP House Chart", new KPChart());
+//        jTabbedPane.addTab("Planetary Friendship", new PlanetaryFriendship());
+//        jTabbedPane.addTab("Nakshatra and Lords", new NakshatraAndTheirLords());
+//        jTabbedPane.addTab("KP House Chart", new KPChart());
         
         jTabbedPane.addChangeListener( _ -> {
             this.revalidate();
