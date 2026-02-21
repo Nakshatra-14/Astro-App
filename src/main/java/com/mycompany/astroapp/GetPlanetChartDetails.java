@@ -86,7 +86,7 @@ public class GetPlanetChartDetails extends javax.swing.JPanel {
                 // img = p.getImage(p.getName());
                 img = p.getImg();
 
-                System.out.println(p);
+//                System.out.println(p);
             }
         });
         jlistPlanets.setSelectedIndex(0);

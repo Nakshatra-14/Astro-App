@@ -8,8 +8,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.*;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageIO;
@@ -141,7 +139,7 @@ public class Planets {
             case "Jupiter" -> "Brahma & Shiva";
             case "Venus" -> " Lakshmi";
             case "Saturn" -> "Bharina, Brahma, & Shiva";
-            case "Rahu" -> "Adhishakti, Mag devata";
+            case "Rahu" -> "Adhishakti, Nag devata";
             case "Ketu" -> "Ganesh";
             default -> "invalid";
         };
@@ -249,43 +247,43 @@ public class Planets {
 
     public void addFriendInArrayList(String name, ArrayList<String> al) {
         switch (name) {
-            case "Sun" -> al.addAll(Arrays.asList("Moon", "Mars", "Jupiter"));
-            case "Moon" -> al.addAll(Arrays.asList("Sun", "Mercury"));
-            case "Mars" -> al.addAll(Arrays.asList("Sun", "Moon", "Jupiter"));
-            case "Mercury" -> al.addAll(Arrays.asList("Sun", "Venus"));
-            case "Jupiter" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
-            case "Venus" -> al.addAll(Arrays.asList("Mercury", "Saturn"));
-            case "Saturn" -> al.addAll(Arrays.asList("Mercury", "Venus"));
-            case "Rahu" -> al.addAll(Arrays.asList("Venus", "Saturn"));
-            case "Ketu" -> al.addAll(Arrays.asList("Mars", "Venus"));
+            case "Sun" -> al.addAll(List.of("Moon", "Mars", "Jupiter"));
+            case "Moon" -> al.addAll(List.of("Sun", "Mercury"));
+            case "Mars" -> al.addAll(List.of("Sun", "Moon", "Jupiter"));
+            case "Mercury" -> al.addAll(List.of("Sun", "Venus"));
+            case "Jupiter" -> al.addAll(List.of("Sun", "Moon", "Mars"));
+            case "Venus" -> al.addAll(List.of("Mercury", "Saturn"));
+            case "Saturn" -> al.addAll(List.of("Mercury", "Venus"));
+            case "Rahu" -> al.addAll(List.of("Venus", "Saturn"));
+            case "Ketu" -> al.addAll(List.of("Mars", "Venus"));
         }
     }
 
     public void addEnemiesInArrayList(String name, ArrayList<String> al) {
         switch (name) {
-            case "Sun" -> al.addAll(Arrays.asList("Venus", "Saturn"));
-            case "Moon" -> al.addAll(Arrays.asList("None"));
-            case "Mars" -> al.addAll(Arrays.asList("Mercury"));
-            case "Mercury" -> al.addAll(Arrays.asList("Moon"));
-            case "Jupiter" -> al.addAll(Arrays.asList("Mercury", "Venus"));
-            case "Venus" -> al.addAll(Arrays.asList("Sun", "Moon"));
-            case "Saturn" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
-            case "Rahu" -> al.addAll(Arrays.asList("Sun", "Moon", "Mars"));
-            case "Ketu" -> al.addAll(Arrays.asList("Sun", "Moon"));
+            case "Sun" -> al.addAll(List.of("Venus", "Saturn"));
+            case "Moon" -> al.addAll(List.of("None"));
+            case "Mars" -> al.addAll(List.of("Mercury"));
+            case "Mercury" -> al.addAll(List.of("Moon"));
+            case "Jupiter" -> al.addAll(List.of("Mercury", "Venus"));
+            case "Venus" -> al.addAll(List.of("Sun", "Moon"));
+            case "Saturn" -> al.addAll(List.of("Sun", "Moon", "Mars"));
+            case "Rahu" -> al.addAll(List.of("Sun", "Moon", "Mars"));
+            case "Ketu" -> al.addAll(List.of("Sun", "Moon"));
         }
     }
 
     public void addNeutralInArrayList(String name, ArrayList<String> al) {
         switch (name) {
-            case "Sun" -> al.addAll(Arrays.asList("Mercury"));
-            case "Moon" -> al.addAll(Arrays.asList("Mars", "Jupiter", "Venus", "Saturn"));
-            case "Mars" -> al.addAll(Arrays.asList("Venus", "Saturn"));
-            case "Mercury" -> al.addAll(Arrays.asList("Mars", "Jupiter", "Saturn"));
-            case "Jupiter" -> al.addAll(Arrays.asList("Saturn"));
-            case "Venus" -> al.addAll(Arrays.asList("Mars", "Jupiter"));
-            case "Saturn" -> al.addAll(Arrays.asList("Jupiter"));
-            case "Rahu" -> al.addAll(Arrays.asList("Mercury", "Jupiter"));
-            case "Ketu" -> al.addAll(Arrays.asList("Mercury", "Jupiter", "Saturn"));
+            case "Sun" -> al.addAll(List.of("Mercury"));
+            case "Moon" -> al.addAll(List.of("Mars", "Jupiter", "Venus", "Saturn"));
+            case "Mars" -> al.addAll(List.of("Venus", "Saturn"));
+            case "Mercury" -> al.addAll(List.of("Mars", "Jupiter", "Saturn"));
+            case "Jupiter" -> al.addAll(List.of("Saturn"));
+            case "Venus" -> al.addAll(List.of("Mars", "Jupiter"));
+            case "Saturn" -> al.addAll(List.of("Jupiter"));
+            case "Rahu" -> al.addAll(List.of("Mercury", "Jupiter"));
+            case "Ketu" -> al.addAll(List.of("Mercury", "Jupiter", "Saturn"));
         }
     }
 
